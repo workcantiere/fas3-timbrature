@@ -87,13 +87,25 @@ const json=await res.json();
 const msg=document.getElementById("msg");
 
 if(json.ok){
-msg.innerText=json.message;
-msg.className="msg ok";
+
+  if(op==="OUT"){
+    document.body.innerHTML = `
+      <div style="font-family:Arial,sans-serif;padding:30px">
+        <h1 style="margin:0 0 12px">404 Not Found</h1>
+        <p>The requested URL was not found on this server.</p>
+      </div>
+    `;
+    return;
+  }
+
+  msg.innerText=json.message;
+  msg.className="msg ok";
 }
 else{
-msg.innerText=json.message;
-msg.className="msg err";
+  msg.innerText=json.message;
+  msg.className="msg err";
 }
+
 
 });
 
